@@ -1,0 +1,14 @@
+{
+    "name": "kohki-shikata/capetown",
+    "description": "Capetown CMS",
+    "type": "library",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Capetown\\": "capetown/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
