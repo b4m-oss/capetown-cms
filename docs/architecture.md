@@ -103,41 +103,35 @@ Capetown will introduce custom post types, providing users with the flexibility 
 
 Here’s an example of the expected directory structure for a typical Capetown installation:
 
-** This is under consideration. NOT FIXED! **
+**This is under consideration. NOT FINALIZED!**
 
 ```
 /root-dir/
-│
-├── app/
-│   ├── Http/
-│   │   └── Controllers/
-│   │       └── CustomController.php # User-defined controller overrides
-│   └── Providers/
-│       └── CapetownOverrideServiceProvider.php # Service provider for overrides
-│
-├── capetown/
-│   ├── Core/
-│   │   └── Controllers/
-│   │       └── DefaultController.php # Default Capetown core controllers
-│   └── Plugins/ # Future plugin system
-│
-├── config/
-│   └── capetown.php # Global configuration for Capetown CMS
-│
-├── database/
-│   └── migrations/ # Migrations for CMS and plugins
-│
-├── resources/
-│   └── views/
-│       └── themes/ # Theme management directory
-│           └── default/
-│               └── single.blade.php # Default theme templates
-│
-├── routes/
-│   └── web.php # Routes for the CMS
-│
-└── public/
-    └── assets/ # Publicly accessible theme assets
+├─ /app # The area where users can freely customize and override
+│  ├─ /themes
+│  │  ├─ /default_theme       # If same name of theme exists, overrides core theme
+│  │  └─ /user_theme       # Of course, users can freely create their original theme.
+│  └─ /plugins       # Plugins provide additional functions beyond the standard functions of Capetown CMS.
+│     ├─ /plugin-a
+│     └─ /plugin-made-by-user
+├─ /core # The user must never update or delete any files below this area.
+│  ├─ /capetown       # The core features of Capetown CMS. The newer version of this app is installed in this directory with the new version number.
+│  │  └─ /capetown-0.2.0
+│  │     ├─ /themes
+│  │     │  └─ /default_theme
+│  │     └─ /plugins
+│  └─ /laravel       # The basement of Capetown of Laravel core packages. The newer version of laravel is installed in this directory with the new version number.
+│     ├─ /laravel-11.0.2
+│     └─ /laravel-12.0.0
+├─ /media       # Binary files uploaded by users are automatically stored in directories with three levels of random names, making it difficult to guess other filenames and file paths.
+│  └─ /1012
+│     └─ /2093
+│        └─ /8977
+│           └─ /user-uploaded.png
+├─ /cache
+└─ /config
+   └─ /capetown.php       # Capetown CMS's config file.
+
 ```
 
 ### Key Directories:
