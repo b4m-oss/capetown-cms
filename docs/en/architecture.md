@@ -2,7 +2,7 @@
 
 **Capetown** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration and interaction between platforms.
 
-See also [READ ME](../README.md).
+See also [READ ME](../../README.md).
 
 ## Overview
 
