@@ -1,4 +1,4 @@
-# Capetown CMS
+# Capetown CMS Architecture
 
 **Capetown** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration and interaction between platforms.
 
@@ -63,10 +63,7 @@ Capetown’s override system allows users to customize controllers, views, and c
 For example, if a user wishes to override a core controller, they simply define a new controller in `app/Http/Controllers/`, and the Capetown system will automatically prioritize the user’s version over the core.
 
 ### 3. Theme Management
-Capetown supports full theme customization through a clean and structured theme management system:
-
-- **Themes Directory**: Located in `resources/views/themes/`, this directory contains all available themes. Each theme has its own directory and contains Blade templates and assets.
-- **Theme Overrides**: Users can define their own themes, which will override the default system views. For example, a `single.blade.php` template in a custom theme will replace the system’s default post view template.
+Capetown supports full theme customization through a clean and structured theme management system.
 
 ### 4. Plugin System (Planned)
 Capetown will introduce a plugin system inspired by WordPress's hooks and filters, allowing developers to add or modify functionality without touching the core code. This system will include:
@@ -77,9 +74,6 @@ Capetown will introduce a plugin system inspired by WordPress's hooks and filter
 ## Configuration Management
 
 Capetown uses a hybrid approach for configuration management. While most configuration files reside in the `config/` directory, certain settings can be stored and managed in the database for dynamic updates.
-
-- **config/capetown.php**: This file holds the global configuration settings for Capetown CMS, such as theme settings and default SEO metadata.
-- **Database-Backed Configurations**: Future versions of Capetown will allow certain configurations, like plugin options, to be stored in the database, allowing administrators to update them dynamically through the admin panel.
 
 ## Future Features and Architecture
 
