@@ -1,143 +1,143 @@
-# Capetown CMS アーキテクチャ
+# Capetown CMS Architecture
 
-**Capetown** は、次世代のウェブ開発のニーズを満たすために設計された、現代的でモジュール式のCMSです。柔軟性と拡張性を念頭に置いて構築されており、開発者がコア機能を直接変更することなくカスタマイズできる強力なオーバーライドシステムを提供します。Capetownは、WordPressデータとの互換性を確保するように開発されており、プラットフォーム間のシームレスな移行と相互作用を可能にします。
+**Capetown** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration and interaction between platforms.
 
-[READ ME](../README.md) も参照してください。
+See also [READ ME](../README.md).
 
-## 概要
+## Overview
 
-Capetown CMSは、以下を提供することでコンテンツ管理を再定義することを目指しています：
+Capetown CMS aims to redefine content management by providing:
 
-- **未来対応のアーキテクチャ**: Laravelの上に構築されており、モジュール式のアーキテクチャを活用して、開発者がカスタム機能を維持しながらコアシステムを更新できるようにします。
-- **WordPressデータ互換性**: Capetownは、WordPressのデータ構造との互換性をサポートするように開発されており、開発者がWordPressからの移行や統合をシームレスに行えるようにします。
-- **カスタマイズ可能で拡張可能**: カスタマイズに重点を置いており、コアコントローラー、ビュー、設定を簡単にオーバーライドできます。
-- **モジュール設計**: Capetownは、テーマやプラグインを含むすべてのコンポーネントがモジュール式であり、コア機能に影響を与えることなく簡単に置き換えたり拡張したりできるという考えに基づいて構築されています。
+- **A Future-Ready Architecture**: Built on top of Laravel, Capetown leverages a modular architecture, giving developers the flexibility to update the core system while maintaining custom features through a clear, organized override system.
+- **WordPress Data Compatibility**: Capetown is being developed to support compatibility with WordPress data structures, enabling developers to transition from or integrate with WordPress seamlessly.
+- **Customizable and Extensible**: With a focus on customization, Capetown allows you to override core controllers, views, and configurations effortlessly.
+- **Modular Design**: Capetown is built with the idea that every component, whether themes or plugins, should be modular and easily replaceable or extendable without affecting core functionality.
 
-## 機能
+## Features
 
-### コア機能
-- **オーバーライド可能なコントローラーとビュー**: Laravelのコアを変更することなく、コアのロジックとプレゼンテーションをカスタマイズまたは置き換えます。
-- **モジュール式テーマ管理**: ユーザー定義のテーマがデフォルトのテーマをオーバーライドする、クリーンで整理された方法でテーマを管理します。
-- **プラグインシステム**: WordPressのフックとフィルターに触発され、柔軟なプラグインベースのカスタマイズを提供することを目指しています。
-- **SEOカスタマイズ**: 現代の検索エンジンに最適化されたSEOメタデータ管理のための組み込みサポート。
-- **フォームシステム**: カスタムフォームを簡単に作成し、データベースに送信を保存し、管理者にメールで送信して迅速にレビューできるようにします。
+### Core Features
+- **Overridable Controllers & Views**: Customize or replace core logic and presentation without altering the Laravel core.
+- **Modular Theme Management**: Manage themes in a clean, organized fashion, with user-defined themes overriding default ones.
+- **Plugin System**: Inspired by WordPress hooks and filters, Capetown aims to offer flexible plugin-based customization.
+- **SEO Customization**: Built-in support for managing SEO metadata, optimized for modern search engines.
+- **Form system**: Create custom forms with ease, store submissions in the database, and send them to administrators via email for quick review.
 
-### 将来の機能
-- **フックとフィルター**: WordPressの強力なフックに似た、Capetownの機能を拡張するための本格的なシステム。
-- **マルチサイトサポート**: 1つのCapetownインスタンスから複数のウェブサイトやドメインをシームレスに管理します。
-- **カスタム投稿タイプ**: 構造化されたコンテンツのための柔軟なカスタム投稿タイプ管理（計画中）。
-- **WordPressインポート**: WordPressデータのインポートをサポートし、移行を簡単にします。
+### Future Features
+- **Hooks & Filters**: A full-fledged system for extending Capetown’s functionality, similar to WordPress's powerful hooks.
+- **Multi-Site Support**: Seamlessly manage multiple websites or domains from one Capetown instance.
+- **Custom Post Types**: Flexible custom post type management for structured content (planned).
+- **WordPress Importt**: Support for importing WordPress data, making migration straightforward.
 
-## ライセンス
+## License
 
-Capetown CMSはオープンソースプロジェクトであり、[MITライセンス](../LICENSE)の下でリリースされています。ウェブ開発のための強力で現代的なソリューションにこのCMSを形作るための貢献とフィードバックを歓迎します。
+Capetown CMS is an open-source project, released under the [MIT license](../LICENSE). We welcome contributions and feedback to help shape this CMS into a powerful and modern solution for web development.
 
-# Capetown CMS - アーキテクチャ概要
+# Capetown CMS - Architecture Overview
 
-Capetown CMSは、開発者に柔軟性を提供しながら、Laravelに強固な基盤を持つモジュール式で拡張可能なアーキテクチャで設計されています。このドキュメントは、モジュールコンポーネントを使用した拡張性とカスタマイズ性に焦点を当て、Capetown CMSのコアコンセプトと構造的組織を概説しています。
+Capetown CMS is designed with a modular and extensible architecture, ensuring flexibility for developers while maintaining a strong foundation in Laravel. This document outlines the core concepts and structural organization of Capetown CMS, focusing on the extendability and customizability through the use of modular components.
 
-## コア原則
+## Core Principles
 
-1. **モジュール性**: Capetownのすべての機能は、テーマからプラグイン、コア機能に至るまでモジュール式です。これにより、開発者はシステム全体の整合性に影響を与えることなく、特定のコンポーネントを拡張またはオーバーライドできます。
+1. **Modularity**: Every feature in Capetown, from themes to plugins and core functionality, is modular. This allows developers to extend or override specific components without affecting the overall system integrity.
+   
+2. **Override Mechanism**: Capetown provides a robust override system for controllers, views, and configuration files. This system ensures that the core framework remains untouched while allowing users to build custom functionality on top of it.
 
-2. **オーバーライドメカニズム**: Capetownは、コントローラー、ビュー、設定ファイルのための強力なオーバーライドシステムを提供します。このシステムは、コアフレームワークが手つかずのままであることを保証しながら、その上にカスタム機能を構築できるようにします。
+3. **Compatibility with WordPress Data**: Capetown is developed with the goal of maintaining compatibility with WordPress's data structures, enabling easy migration and integration for existing WordPress users.
 
-3. **WordPressデータとの互換性**: Capetownは、WordPressのデータ構造との互換性を維持することを目標に開発されており、既存のWordPressユーザーにとって簡単な移行と統合を可能にします。
+## High-Level Architecture
 
-## 高レベルアーキテクチャ
+### 1. Core Structure
+The core of Capetown CMS is built on top of the Laravel framework, with custom extensions to allow for overriding core functionalities. Key components include:
 
-### 1. コア構造
-Capetown CMSのコアは、Laravelフレームワークの上に構築されており、コア機能をオーバーライドするためのカスタム拡張が含まれています。主要なコンポーネントには以下が含まれます：
+- **Controllers**: Responsible for handling HTTP requests. These can be overridden by user-defined controllers located in the `app/Http/Controllers` directory.
+- **Models**: Data interactions are handled through Laravel's Eloquent ORM, providing a powerful abstraction for database management.
+- **Views**: Blade templates are used for rendering HTML, and user-defined views in themes can override default views.
+  
+### 2. Override System
+Capetown’s override system allows users to customize controllers, views, and configurations. The override mechanism follows a layered approach:
 
-- **コントローラー**: HTTPリクエストを処理する責任があります。これらは、`app/Http/Controllers`ディレクトリにあるユーザー定義のコントローラーによってオーバーライドできます。
-- **モデル**: データのやり取りは、LaravelのEloquent ORMを通じて処理され、データベース管理のための強力な抽象化を提供します。
-- **ビュー**: HTMLをレンダリングするためにBladeテンプレートが使用され、テーマ内のユーザー定義のビューがデフォルトのビューをオーバーライドできます。
+1. **Laravel Core**: The base system remains intact and is located in the `vendor` directory.
+2. **Capetown Core**: Extensions and customizations provided by Capetown are located in the `capetown/` directory. These are intended as extensions to the Laravel framework.
+3. **User Overrides**: The user-defined components that override Capetown’s core logic reside in the `app/` directory.
 
-### 2. オーバーライドシステム
-Capetownのオーバーライドシステムは、ユーザーがコントローラー、ビュー、設定をカスタマイズできるようにします。オーバーライドメカニズムは、層状のアプローチに従います：
+For example, if a user wishes to override a core controller, they simply define a new controller in `app/Http/Controllers/`, and the Capetown system will automatically prioritize the user’s version over the core.
 
-1. **Laravelコア**: ベースシステムは手つかずのままであり、`vendor`ディレクトリにあります。
-2. **Capetownコア**: Capetownによって提供される拡張とカスタマイズは、`capetown/`ディレクトリにあります。これらはLaravelフレームワークへの拡張として意図されています。
-3. **ユーザーオーバーライド**: Capetownのコアロジックをオーバーライドするユーザー定義のコンポーネントは、`app/`ディレクトリにあります。
+### 3. Theme Management
+Capetown supports full theme customization through a clean and structured theme management system.
 
-たとえば、ユーザーがコアコントローラーをオーバーライドしたい場合、新しいコントローラーを`app/Http/Controllers/`に定義するだけで、Capetownシステムは自動的にユーザーのバージョンをコアより優先します。
+### 4. Plugin System (Planned)
+Capetown will introduce a plugin system inspired by WordPress's hooks and filters, allowing developers to add or modify functionality without touching the core code. This system will include:
 
-### 3. テーマ管理
-Capetownは、クリーンで構造化されたテーマ管理システムを通じて、完全なテーマカスタマイズをサポートします。
+- **Actions**: Allow developers to inject additional functionality at specific points in the system.
+- **Filters**: Enable modification of data before it is rendered or processed.
 
-### 4. プラグインシステム（計画中）
-Capetownは、WordPressのフックとフィルターに触発されたプラグインシステムを導入し、開発者がコアコードに触れることなく機能を追加または変更できるようにします。このシステムには以下が含まれます：
+## Configuration Management
 
-- **アクション**: システム内の特定のポイントで追加の機能を注入することを開発者に許可します。
-- **フィルター**: データがレンダリングまたは処理される前に変更を可能にします。
+Capetown uses a hybrid approach for configuration management. While most configuration files reside in the `config/` directory, certain settings can be stored and managed in the database for dynamic updates.
 
-## 設定管理
+## Future Features and Architecture
 
-Capetownは、設定管理のためにハイブリッドアプローチを使用します。ほとんどの設定ファイルは`config/`ディレクトリにありますが、特定の設定はデータベースに保存され、動的に更新されることがあります。
+Capetown CMS is designed with the future in mind. Below are key features planned for future releases, along with their architectural implications:
 
-## 将来の機能とアーキテクチャ
+### 1. Hooks & Filters (Planned)
+Capetown will implement a system of hooks and filters, similar to WordPress, to allow developers to extend or modify the system's behavior without directly modifying the core code.
 
-Capetown CMSは、将来を見据えて設計されています。以下は、将来のリリースで計画されている主要な機能とそのアーキテクチャ的な影響です：
+- **Hooks**: Provide a way to run custom code at specific points during execution (e.g., when saving a post).
+- **Filters**: Allow modification of data (e.g., modifying post content before it is displayed).
 
-### 1. フックとフィルター（計画中）
-Capetownは、WordPressに似たフックとフィルターのシステムを実装し、開発者がコアコードを直接変更することなくシステムの動作を拡張または変更できるようにします。
+### 2. Multi-Site Support (Planned)
+Capetown will support multi-site installations, where administrators can manage multiple websites from a single Capetown instance. Each site will be differentiated by its domain or subdomain.
 
-- **フック**: 実行中の特定のポイントでカスタムコードを実行する方法を提供します（例：投稿を保存する際）。
-- **フィルター**: データの変更を許可します（例：表示される前に投稿内容を変更）。
+- **Architecture**: Multi-site support will involve extending Laravel's routing and database systems. Each site will have its own configurations, themes, and potentially unique database tables.
+- **User Management**: Administrators will have the ability to manage user roles and permissions across different sites.
 
-### 2. マルチサイトサポート（計画中）
-Capetownは、管理者が単一のCapetownインスタンスから複数のウェブサイトを管理できるマルチサイトインストールをサポートします。各サイトは、そのドメインまたはサブドメインによって区別されます。
+### 3. Custom Post Types (Planned)
+Capetown will introduce custom post types, providing users with the flexibility to create structured content (e.g., portfolios, testimonials) in addition to the standard blog posts.
 
-- **アーキテクチャ**: マルチサイトサポートは、Laravelのルーティングとデータベースシステムを拡張することを含みます。各サイトは独自の設定、テーマ、おそらくユニークなデータベーステーブルを持ちます。
-- **ユーザー管理**: 管理者は、異なるサイト間でユーザーの役割と権限を管理する能力を持ちます。
+- **Architecture**: Custom post types will be managed through configuration files or the admin panel and will be stored in dedicated database tables, allowing for full customization of fields, taxonomies, and relationships.
 
-### 3. カスタム投稿タイプ（計画中）
-Capetownは、標準のブログ投稿に加えて、構造化されたコンテンツ（例：ポートフォリオ、推薦文）を作成する柔軟性をユーザーに提供するカスタム投稿タイプを導入します。
+## Directory Structure
 
-- **アーキテクチャ**: カスタム投稿タイプは、設定ファイルまたは管理パネルを通じて管理され、専用のデータベーステーブルに保存され、フィールド、分類法、関係の完全なカスタマイズを可能にします。
+Here’s an example of the expected directory structure for a typical Capetown installation:
 
-## ディレクトリ構造
-
-以下は、典型的なCapetownインストールの予想されるディレクトリ構造の例です：
-
-**これは検討中です。最終決定ではありません！**
+**This is under consideration. NOT FINALIZED!**
 
 ```
 /root-dir/
-├─ /app # ユーザーが自由にカスタマイズおよびオーバーライドできるエリア
+├─ /app # The area where users can freely customize and override
 │  ├─ /themes
-│  │  ├─ /default_theme       # 同じ名前のテーマが存在する場合、コアテーマをオーバーライドします
-│  │  └─ /user_theme       # もちろん、ユーザーは独自のテーマを自由に作成できます。
-│  └─ /plugins       # プラグインは、Capetown CMSの標準機能を超えた追加機能を提供します。
+│  │  ├─ /default_theme       # If same name of theme exists, overrides core theme
+│  │  └─ /user_theme       # Of course, users can freely create their original theme.
+│  └─ /plugins       # Plugins provide additional functions beyond the standard functions of Capetown CMS.
 │     ├─ /plugin-a
 │     └─ /plugin-made-by-user
-├─ /core # ユーザーはこのエリア以下のファイルを更新または削除してはなりません。
-│  ├─ /capetown       # Capetown CMSのコア機能。このアプリの新しいバージョンは、新しいバージョン番号でこのディレクトリにインストールされます。
+├─ /core # The user must never update or delete any files below this area.
+│  ├─ /capetown       # The core features of Capetown CMS. The newer version of this app is installed in this directory with the new version number.
 │  │  └─ /capetown-0.2.0
 │  │     ├─ /themes
 │  │     │  └─ /default_theme
 │  │     └─ /plugins
-│  └─ /laravel       # Capetownの基盤であるLaravelコアパッケージ。新しいバージョンのlaravelは、新しいバージョン番号でこのディレクトリにインストールされます。
+│  └─ /laravel       # The basement of Capetown of Laravel core packages. The newer version of laravel is installed in this directory with the new version number.
 │     ├─ /laravel-11.0.2
 │     └─ /laravel-12.0.0
-├─ /media       # ユーザーがアップロードしたバイナリファイルは、他のファイル名やファイルパスを推測しにくくするために、3レベルのランダムな名前のディレクトリに自動的に保存されます。
+├─ /media       # Binary files uploaded by users are automatically stored in directories with three levels of random names, making it difficult to guess other filenames and file paths.
 │  └─ /1012
 │     └─ /2093
 │        └─ /8977
 │           └─ /user-uploaded.png
 ├─ /cache
 └─ /config
-   └─ /capetown.php       # Capetown CMSの設定ファイル。
+   └─ /capetown.php       # Capetown CMS's config file.
 
 ```
 
-### 主要ディレクトリ：
-- **app/**: コントローラーとサービスプロバイダーのためのユーザー定義のオーバーライドを含みます。
-- **capetown/**: デフォルトのコントローラー、将来のプラグインシステム、その他のコアコンポーネントを含むCapetown CMSのコアロジック。
-- **config/**: Capetownの設定ファイル、グローバル設定やテーマ関連の設定を含みます。
-- **resources/views/**: テーマとビューのテンプレートを保存し、ユーザー定義のテーマオーバーライドを可能にします。
-- **database/migrations/**: コアテーブルと将来のプラグイン統合のためのデータベースマイグレーションを処理します。
+### Key Directories:
+- **app/**: Contains user-defined overrides for controllers and service providers.
+- **capetown/**: The core Capetown CMS logic, including the default controllers, future plugin system, and other core components.
+- **config/**: Configuration files for Capetown, including global settings and theme-related configurations.
+- **resources/views/**: Stores themes and view templates, allowing user-defined theme overrides.
+- **database/migrations/**: Handles database migrations for core tables and future plugin integrations.
 
-## 結論
+## Conclusion
 
-Capetown CMSは、開発者に柔軟でモジュール式のシステムを提供し、簡単に拡張、カスタマイズ、維持できるように設計されています。強力なオーバーライドシステム、将来のマルチサイトサポート、WordPressデータ互換性などの機能を備えたCapetownは、現代のウェブ開発のための強力なツールを目指しています。
+Capetown CMS is designed to offer developers a flexible and modular system that can be easily extended, customized, and maintained. With features like a robust override system, future multi-site support, and WordPress data compatibility, Capetown aims to be a powerful tool for modern web development.
