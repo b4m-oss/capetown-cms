@@ -1,6 +1,6 @@
 # Capetown CMS Architecture
 
-**Capetown** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration and interaction between platforms.
+**Capetown** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration from WordPress.
 
 See also [READ ME](../../README.md).
 
@@ -33,6 +33,9 @@ Capetown CMS aims to redefine content management by providing:
 Capetown CMS is an open-source project, released under the [MIT license](../LICENSE). We welcome contributions and feedback to help shape this CMS into a powerful and modern solution for web development.
 
 # Capetown CMS - Architecture Overview
+
+>[!NOTE]
+>This section is under consideration.
 
 Capetown CMS is designed with a modular and extensible architecture, ensuring flexibility for developers while maintaining a strong foundation in Laravel. This document outlines the core concepts and structural organization of Capetown CMS, focusing on the extendability and customizability through the use of modular components.
 
