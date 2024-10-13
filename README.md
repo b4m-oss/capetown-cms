@@ -27,6 +27,10 @@ Capetown CMS aims to redefine content management by providing:
 - **Custom Post Types**: Flexible custom post type management for structured content (planned).
 - **WordPress Import & Export**: Support for importing and exporting WordPress data, making migration straightforward.
 
+## Contriuting
+
+See [CONTRIBUTE.md](./docs/CONTRIBUTIN)
+
 ## License
 
 Capetown CMS is an open-source project, released under the [MIT license](LICENSE). We welcome contributions and feedback to help shape this CMS into a powerful and modern solution for web development.
