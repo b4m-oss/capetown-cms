@@ -2,7 +2,10 @@
 
 **Capetown CMS** is a modern, modular CMS designed to embrace the needs of the next generation of web development. It is built with flexibility and extensibility in mind, offering a robust override system that allows developers to customize core functionality without directly modifying it. Capetown is developed to ensure compatibility with WordPress data, allowing for seamless migration and interaction between platforms.
 
-[See more details at official docs](./docs/index.md)
+[See more details at official docs](./docs/en/index.md)
+
+- [日本語/Japanse versionはこちら](./README-ja.md)
+- [日本語版ドキュメントはこちら](./docs/ja/index.md)
 
 ## Getting Started
 
@@ -42,7 +45,7 @@ Under consideration.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](./docs/en/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
