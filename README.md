@@ -4,34 +4,62 @@
 
 [See more details at official docs](./docs/index.md)
 
-## Overview
+## Getting Started
 
-Capetown CMS aims to redefine content management by providing:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-- **A Future-Ready Architecture**: Built on top of Laravel, Capetown leverages a modular architecture, giving developers the flexibility to update the core system while maintaining custom features through a clear, organized override system.
-- **WordPress Data Compatibility**: Capetown is being developed to support compatibility with WordPress data structures, enabling developers to transition from or integrate with WordPress seamlessly.
-- **Customizable and Extensible**: With a focus on customization, Capetown allows you to override core controllers, views, and configurations effortlessly.
-- **Modular Design**: Capetown is built with the idea that every component, whether themes or plugins, should be modular and easily replaceable or extendable without affecting core functionality.
+### Prerequisites
 
-## Features
+What things you need to install the software and how to install them
 
-### Core Features
-- **Overridable Controllers & Views**: Customize or replace core logic and presentation without altering the Laravel core.
-- **Modular Theme Management**: Manage themes in a clean, organized fashion, with user-defined themes overriding default ones.
-- **Plugin System**: Inspired by WordPress hooks and filters, Capetown aims to offer flexible plugin-based customization.
-- **SEO Customization**: Built-in support for managing SEO metadata, optimized for modern search engines.
+- Docker
 
-### Future Features
-- **Hooks & Filters**: A full-fledged system for extending Capetown’s functionality, similar to WordPress's powerful hooks.
-- **Multi-Site Support**: Seamlessly manage multiple websites or domains from one Capetown instance.
-- **Custom Post Types**: Flexible custom post type management for structured content (planned).
-- **WordPress Import & Export**: Support for importing and exporting WordPress data, making migration straightforward.
+## Deployment
 
-## Contriuting
+```shell
+git clone https://github.com/kohki-shikata/capetown-cms.git
+docker compose up -d
+```
 
-See [CONTRIBUTE.md](./docs/CONTRIBUTING.md)
+## Running the tests
+
+Under consideration.
+
+### Break down into end to end tests
+
+Under consideration.
+
+E2E test will be provided with Laravel Dusk.
+
+### And coding style tests
+
+Under consideration.
+
+## Built With
+
+* [Laravel](https://laravel.com/)
+* [Composer](https://getcomposer.org/) - Dependency Management
+
+## Contributing
+
+Please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/kohki-shikata/captown-cms/tags). 
+
+## Core Developers
+
+* **[Kohki SHIKATA](https://github.com/kohki-shikata)** 
 
 ## License
 
-Capetown CMS is an open-source project, released under the [MIT license](LICENSE). We welcome contributions and feedback to help shape this CMS into a powerful and modern solution for web development.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+
+## Acknowledgments
+
+* [WordPress](https://wordpress.org/)
+* [Concrete CMS](https://www.concretecms.org/)
+* [Laravel](https://laravel.com/)
+* [Ruby on Rails](https://rubyonrails.org/)
 

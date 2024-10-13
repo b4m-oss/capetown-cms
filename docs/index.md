@@ -6,6 +6,10 @@ Capetown CMS: Navigating a New Era of Content Management. Embark on a new journe
 1. [What Capetown CMS is](./statement.md)
 1. [Architecture](./architecture.md)
 
+## Contribute
+
+Please check [Contribute guideline](./CONTRIBUTING.md).
+
 ## Member
 - **DevLeader:** [@kohki-shikata](https://github.com/kohki-shikata)
 
