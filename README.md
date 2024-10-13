@@ -17,7 +17,7 @@ What things you need to install the software and how to install them
 
 - Docker
 
-## Deployment
+## The first step of developing
 
 ```shell
 git clone https://github.com/kohki-shikata/capetown-cms.git
