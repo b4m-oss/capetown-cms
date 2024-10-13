@@ -29,7 +29,7 @@ Capetown CMS aims to redefine content management by providing:
 
 ## Contriuting
 
-See [CONTRIBUTE.md](./docs/CONTRIBUTIN)
+See [CONTRIBUTE.md](./docs/CONTRIBUTING.md)
 
 ## License
 
