@@ -20,12 +20,13 @@ Capetown CMS aims to redefine content management by providing:
 - **Modular Theme Management**: Manage themes in a clean, organized fashion, with user-defined themes overriding default ones.
 - **Plugin System**: Inspired by WordPress hooks and filters, Capetown aims to offer flexible plugin-based customization.
 - **SEO Customization**: Built-in support for managing SEO metadata, optimized for modern search engines.
+- **Form system**: Create custom forms with ease, store submissions in the database, and send them to administrators via email for quick review.
 
 ### Future Features
 - **Hooks & Filters**: A full-fledged system for extending Capetown’s functionality, similar to WordPress's powerful hooks.
 - **Multi-Site Support**: Seamlessly manage multiple websites or domains from one Capetown instance.
 - **Custom Post Types**: Flexible custom post type management for structured content (planned).
-- **WordPress Import & Export**: Support for importing and exporting WordPress data, making migration straightforward.
+- **WordPress Importt**: Support for importing WordPress data, making migration straightforward.
 
 ## License
 
