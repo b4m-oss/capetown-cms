@@ -1,78 +1,94 @@
 services:
+  # PHP Application
   app:
-    image: php:8.2-fpm
-    container_name: capetown-app
-    working_dir: /var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME}_app
     volumes:
-      - ./:/var/www/html
-    networks:
-      - capetown-network
+      - ./dev:/var/www/html
+      - ./dev/nginx.conf:/etc/nginx/conf.d/default.conf  # 追加
+    ports:
+      - "8000:80" # Laravel の Web サーバーが 8000 ポートで動作
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_DEBUG=${APP_DEBUG}
+      - APP_KEY=${APP_KEY}
+    env_file:
+      - ./.env
     depends_on:
-      - mysql
-      - redis
+      - mysql # デフォルトでは MySQL を使用
+      # - postgres_db # PostgreSQL を使う場合はこちらを有効化
+    networks:
+      - capetown_network
 
-  web:
+# Nginx
+  nginx:
     image: nginx:alpine
-    container_name: capetown-web
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./:/var/www/html
+    container_name: ${APP_NAME}_nginx
     ports:
       - "80:80"
-    networks:
-      - capetown-network
+    volumes:
+      - ./dev/nginx.conf:/etc/nginx/nginx.conf
+      - ./dev:/var/www/html
     depends_on:
       - app
+    networks:
+      - capetown_network
 
+  # MySQL
   mysql:
     image: mysql:8.0
-    container_name: capetown-mysql
-    restart: always
+    container_name: ${APP_NAME}_db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: capetown
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - capetown-network
-
-  redis:
-    image: redis:alpine
-    container_name: capetown-redis
-    networks:
-      - capetown-network
-
-  meilisearch:
-    image: getmeili/meilisearch:v0.25
-    container_name: capetown-meilisearch
-    environment:
-      MEILI_MASTER_KEY: 'masterKey'
+      - db_data:/var/lib/mysql
     ports:
-      - "7700:7700"
+      - "${DB_PORT}:3306"
     networks:
-      - capetown-network
+      - capetown_network
 
+  # PostgreSQL (コメントアウト)
+  # postgres_db:
+  #   image: postgres:13
+  #   container_name: ${APP_NAME}_postgres_db
+  #   environment:
+  #     POSTGRES_DB: ${DB_DATABASE}
+  #     POSTGRES_USER: ${DB_USERNAME}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "${PG_PORT}:5432"
+  #   networks:
+  #     - capetown_network
+
+  # Adminer (DB UI)
+  adminer:
+    image: adminer
+    container_name: ${APP_NAME}_adminer
+    ports:
+      - "${ADMINER_PORT}:8080"
+    networks:
+      - capetown_network
+
+  # Mailpit for mail debugging
   mailpit:
-    image: mailpit/mailpit
-    container_name: capetown-mailpit
+    image: axllent/mailpit
+    container_name: ${APP_NAME}_mailpit
     ports:
-      - "8025:8025"
+      - "${MAILPIT_PORT}:8025"
     networks:
-      - capetown-network
-
-  selenium:
-    image: selenium/standalone-chrome
-    container_name: capetown-selenium
-    ports:
-      - "4444:4444"
-    networks:
-      - capetown-network
+      - capetown_network
 
 volumes:
-  mysql_data:
+  db_data:
+  # postgres_data:
 
 networks:
-  capetown-network:
+  capetown_network:
     driver: bridge
