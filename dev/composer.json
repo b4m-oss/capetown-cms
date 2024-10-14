@@ -1,0 +1,21 @@
+{
+    "name": "b4m-oss/capetown-cms",
+    "description": "CapetownCMS based on Laravel framework.",
+    "type": "project",
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Capetown\\": "capetown/app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
