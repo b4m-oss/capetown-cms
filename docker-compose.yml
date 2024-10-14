@@ -39,8 +39,8 @@ services:
   composer:
     image: composer:latest
     volumes:
-      - ./dev/core/laravel/laravel-11.2.1:/var/www/html
-    working_dir: /var/www/html
+      - ./dev:/var/www/html  # Laravel プロジェクト全体をマウント
+    working_dir: /var/www/html/core/laravel/laravel-11.2.1  # 正しい作業ディレクトリを指定
     networks:
       - capetown_network
     depends_on:

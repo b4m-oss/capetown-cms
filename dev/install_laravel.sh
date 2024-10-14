@@ -7,43 +7,58 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LARAVEL_VERSION="11.2.1"
 LARAVEL_DIR="$SCRIPT_DIR/core/laravel/laravel-$LARAVEL_VERSION"
 
-# Laravelを指定したディレクトリにダウンロード
+# Composerの存在確認
+if ! command -v composer &> /dev/null; then
+    echo "Error: Composer is not installed. Please install Composer first."
+    exit 1
+fi
+
+# Laravelを指定したディレクトリにインストール
 if [ ! -d "$LARAVEL_DIR" ]; then
-    echo "Downloading Laravel version $LARAVEL_VERSION..."
-    mkdir -p "$LARAVEL_DIR"
+    echo "Creating Laravel project version $LARAVEL_VERSION in $LARAVEL_DIR..."
 
-    # ダウンロード
-    if curl -L "https://github.com/laravel/laravel/archive/refs/tags/v$LARAVEL_VERSION.zip" -o "$LARAVEL_DIR/laravel.zip"; then
-        echo "Download complete. Extracting files..."
-
-        # 解凍
-        if unzip "$LARAVEL_DIR/laravel.zip" -d "$LARAVEL_DIR"; then
-            # 解凍後のディレクトリを移動
-            mv "$LARAVEL_DIR/laravel-$LARAVEL_VERSION/"* "$LARAVEL_DIR/"
-            rm -rf "$LARAVEL_DIR/laravel-$LARAVEL_VERSION"
-            rm "$LARAVEL_DIR/laravel.zip"
-            echo "Laravel installation complete."
-        else
-            echo "Error: Failed to extract Laravel files."
-            exit 1
-        fi
-    else
-        echo "Error: Failed to download Laravel."
+    # ローカルのComposerを使用してLaravelをインストール
+    if ! composer create-project --prefer-dist laravel/laravel "$LARAVEL_DIR" "$LARAVEL_VERSION"; then
+        echo "Error: Failed to create Laravel project."
         exit 1
     fi
+
+    echo "Laravel installation complete."
 else
     echo "Laravel version $LARAVEL_VERSION is already installed in $LARAVEL_DIR."
 fi
 
-# Docker Composeを使用してComposerで依存関係をインストール
+# Laravelディレクトリに対してchmodを適用
+echo "Setting permissions for Laravel directory..."
+
+if ! chmod -R 755 "$LARAVEL_DIR"; then
+    echo "Error: Failed to set permissions for $LARAVEL_DIR."
+    exit 1
+fi
+
+# 作業ディレクトリを確認
+echo "Checking the working directory..."
+
+# ディレクトリの存在確認を行う
+if ! ls -la "$LARAVEL_DIR"; then
+    echo "Error: Failed to list directory contents."
+    exit 1
+fi
+
+# 依存関係をインストール
 echo "Installing dependencies with Composer..."
 
-# ここでdocker composeのサービス名を確認
-if ! docker compose run --rm composer install; then
+if ! (cd "$LARAVEL_DIR" && composer install); then
     echo "Error: Composer install failed."
     exit 1
 fi
 
-echo "Dependencies installed successfully."
+# アプリケーションキーの生成
+echo "Generating application key..."
 
+if ! (cd "$LARAVEL_DIR" && php artisan key:generate); then
+    echo "Error: Failed to generate application key."
+    exit 1
+fi
 
+echo "Application key generated successfully."
