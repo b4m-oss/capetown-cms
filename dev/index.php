@@ -12,7 +12,7 @@ function loadFile($requestPath) {
     }
 
     // 2. Capetownディレクトリを確認
-    $capetownPath = __DIR__ . '/core/capetown/capetown-0.2.0' . $requestPath;
+    $capetownPath = __DIR__ . '/core/capetown/capetown-0.1.0' . $requestPath;
     if (file_exists($capetownPath)) {
         return include $capetownPath;
     }
