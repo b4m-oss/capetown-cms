@@ -1,36 +1,47 @@
 <?php
+// dev/index.php
 
-// リクエストURIを取得
-$requestUri = $_SERVER['REQUEST_URI'];
+// エラーレポートの設定
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// オーバーライド用の関数
-function loadFile($requestPath) {
-    // 1. appディレクトリを確認
-    $appPath = __DIR__ . '/app' . $requestPath;
-    if (file_exists($appPath)) {
-        return include $appPath;
-    }
+// ユーザー領域のインクルード
+$userBootstrap = __DIR__ . '/user/bootstrap/app.php';
+$capetownBootstrap = __DIR__ . '/core/capetown/capetowncms-0.1.0/bootstrap/app.php';
+$laravelBootstrap = __DIR__ . '/core/laravel/laravel-11.2.1/bootstrap/app.php';
+$laravelVendor = __DIR__ . '/core/laravel/laravel-11.2.1/vendor/autoload.php'; // Composerのオートローダー
 
-    // 2. Capetownディレクトリを確認
-    $capetownPath = __DIR__ . '/core/capetown/capetown-0.1.0' . $requestPath;
-    if (file_exists($capetownPath)) {
-        return include $capetownPath;
-    }
-
-    // 3. Laravelコアを確認
-    $laravelPath = __DIR__ . '/core/laravel/laravel-11.9' . $requestPath;
-    if (file_exists($laravelPath)) {
-        return include $laravelPath; // オーバーライドしないが、存在する場合は使用
-    }
-
-    throw new Exception('File not found');
+// ユーザー領域が存在する場合に読み込む
+if (file_exists($userBootstrap)) {
+    require_once $userBootstrap; // ユーザー固有の処理や設定を読み込む
 }
 
-// ファイルを読み込む
+// CapetownCMS領域が存在する場合に読み込む
+if (file_exists($capetownBootstrap)) {
+    require_once $capetownBootstrap; // CapetownCMS固有の処理や設定を読み込む
+}
+
+// Composerのオートローダーを読み込む
+if (file_exists($laravelVendor)) {
+    require_once $laravelVendor; // Laravelの依存関係をオートロード
+} else {
+    die("Error: Composer autoload file not found.");
+}
+
+// リクエストをLaravelに渡すための準備
 try {
-    loadFile($requestUri);
+    // Laravelのアプリケーションを起動
+    $app = require_once $laravelBootstrap; // アプリケーションインスタンスを取得
 } catch (Exception $e) {
-    // エラーハンドリング
-    http_response_code(404);
-    echo "404 Not Found: " . $e->getMessage();
+    error_log($e->getMessage());
+    die("An error occurred while starting the application.");
 }
+
+// リクエストの処理
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$request = Illuminate\Http\Request::capture();
+$response = $kernel->handle($request);
+
+// レスポンスを返す
+$response->send();
+$kernel->terminate($request, $response);

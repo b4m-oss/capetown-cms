@@ -34,3 +34,16 @@ if [ ! -d "$LARAVEL_DIR" ]; then
 else
     echo "Laravel version $LARAVEL_VERSION is already installed in $LARAVEL_DIR."
 fi
+
+# Docker Composeを使用してComposerで依存関係をインストール
+echo "Installing dependencies with Composer..."
+
+# ここでdocker composeのサービス名を確認
+if ! docker compose run --rm composer install; then
+    echo "Error: Composer install failed."
+    exit 1
+fi
+
+echo "Dependencies installed successfully."
+
+

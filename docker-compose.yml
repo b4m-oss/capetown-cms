@@ -22,7 +22,7 @@ services:
     networks:
       - capetown_network
 
-# Nginx
+  # Nginx
   nginx:
     image: nginx:alpine
     container_name: ${APP_NAME}_nginx
@@ -35,6 +35,16 @@ services:
       - app
     networks:
       - capetown_network
+
+  composer:
+    image: composer:latest
+    volumes:
+      - ./dev/core/laravel/laravel-11.2.1:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - capetown_network
+    depends_on:
+      - app # 追加: Composerがappに依存する場合
 
   # MySQL
   mysql:
