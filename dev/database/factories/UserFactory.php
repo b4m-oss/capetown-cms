@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\UserStatus;
+use App\Models\UserRole;
+use Database\Factories\UserStatusFactory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -29,6 +32,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => UserRole::factory()->create()->id, // ここを追加
+            'status' => UserStatus::factory()->create()->id, // ここを追加
         ];
     }
 

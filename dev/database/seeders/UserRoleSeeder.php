@@ -12,6 +12,23 @@ class UserRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        UserStatus::create([
+            [
+                'name' => 'administrator',
+                'label' => 'administrator'
+            ],
+            [
+                'name' => 'editor',
+                'label' => 'editor'
+            ],
+            [
+                'name' => 'author',
+                'label' => 'author'
+            ],
+            [
+                'name' => 'contributor',
+                'label' => 'subscriber'
+            ],
+        ]);
     }
 }

@@ -37,6 +37,8 @@ return new class () extends Migration {
             $table->text('description')->nullable();
             $table->unsignedBigInteger('status');
             $table->unsignedBigInteger('role');
+            $table->datetime('email_verified_at')->nullable();
+            $table->rememberToken(); // この行を追加
             $table->json('data')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('invited_by')->nullable();

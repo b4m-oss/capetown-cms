@@ -17,7 +17,10 @@ class UserRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'label' => $this->faker->word(),
+            // 'data' => json_encode([]), // 必要に応じて
+            // 他の必要なカラム...
         ];
     }
 }
