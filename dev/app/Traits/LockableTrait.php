@@ -2,15 +2,16 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 trait LockableTrait
 {
     protected $lockDuration; // ロックの有効時間
+
     protected $lockColumn; // ロックカラム名
+
     protected $lockable = false; // ロック機能の有効性フラグ
 
     /**
@@ -33,9 +34,10 @@ trait LockableTrait
      */
     protected function validateLockable()
     {
-        if (!Schema::hasColumn($this->getTable(), $this->lockColumn)) {
+        if (! Schema::hasColumn($this->getTable(), $this->lockColumn)) {
             $this->lockable = false;
             Log::warning("ロックカラムの名称が違います: {$this->lockColumn}");
+
             return;
         }
 
@@ -43,6 +45,7 @@ trait LockableTrait
         if (empty($columnType) || $columnType[0]->Type !== 'datetime') {
             $this->lockable = false;
             Log::warning("ロックカラムの型はdatetimeでなければなりません: {$this->lockColumn}");
+
             return;
         }
 
@@ -86,6 +89,7 @@ trait LockableTrait
             // 有効時間が経過していなければロックされている
             return Carbon::now()->diffInSeconds($this->{$this->lockColumn}) < $this->lockDuration;
         }
+
         return false;
     }
 
@@ -96,13 +100,13 @@ trait LockableTrait
      */
     public function canEdit()
     {
-        return !$this->isLocked();
+        return ! $this->isLocked();
     }
 
     /**
      * ロックの有効時間を設定する。
      *
-     * @param int $seconds ロックの有効時間（秒数）。
+     * @param  int  $seconds  ロックの有効時間（秒数）。
      */
     public function setLockDuration(int $seconds)
     {

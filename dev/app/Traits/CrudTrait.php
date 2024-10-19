@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Traits;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 trait CrudTrait
 {
@@ -40,6 +41,7 @@ trait CrudTrait
         try {
             $model = $this->getModel();
             $record = $model::findOrFail($id);
+
             return $record;
         } catch (ModelNotFoundException $e) {
             return ['message' => 'Resource not found'];
@@ -64,6 +66,7 @@ trait CrudTrait
         try {
             $model = $this->getModel();
             $record = $model::create($request->validated());
+
             return $record;
         } catch (\Exception $e) {
             return ['message' => 'Error creating record', 'error' => $e->getMessage()];
@@ -78,6 +81,7 @@ trait CrudTrait
         try {
             $model = $this->getModel();
             $record = $model::findOrFail($id);
+
             return $record;
         } catch (ModelNotFoundException $e) {
             return ['message' => 'Resource not found'];
@@ -101,6 +105,7 @@ trait CrudTrait
             }
 
             $record->update($request->validated());
+
             return $record;
         } catch (ModelNotFoundException $e) {
             return ['message' => 'Resource not found'];
@@ -124,6 +129,7 @@ trait CrudTrait
             }
 
             $record->delete();
+
             return ['message' => 'Resource deleted'];
         } catch (ModelNotFoundException $e) {
             return ['message' => 'Resource not found'];
@@ -147,6 +153,7 @@ trait CrudTrait
     {
         try {
             $deletedCount = $this->getModel()::whereIn('id', $ids)->delete();
+
             return $deletedCount > 0;
         } catch (\Exception $e) {
             return false; // 失敗時にはfalseを返す
@@ -162,23 +169,23 @@ trait CrudTrait
             foreach ($updates as $id => $data) {
                 $this->getModel()::where('id', $id)->update($data);
             }
+
             return true; // 全ての更新が成功した場合はtrueを返す
         } catch (\Exception $e) {
             return false; // 失敗時にはfalseを返す
         }
     }
 
-
     /**
      * ページネーションを行うメソッド
      *
-     * @param int|null $perPage ページサイズ（指定しない場合は.envから取得）
-     * @param int|null $maxResults 最大件数（指定しない場合は.envから取得）
+     * @param  int|null  $perPage  ページサイズ（指定しない場合は.envから取得）
+     * @param  int|null  $maxResults  最大件数（指定しない場合は.envから取得）
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|array
-     *      ページネーション結果、または全件取得の場合は全レコード
-     *      エラー発生時にはエラーメッセージの配列を返す
+     *                                                                     ページネーション結果、または全件取得の場合は全レコード
+     *                                                                     エラー発生時にはエラーメッセージの配列を返す
      */
-    public function paginate(int $perPage = null, int $maxResults = null)
+    public function paginate(?int $perPage = null, ?int $maxResults = null)
     {
         try {
             // 最大件数を.envから取得
@@ -198,19 +205,18 @@ trait CrudTrait
             }
 
             $results = $this->getModel()::paginate($perPage);
+
             return $results; // ページネーション結果をそのまま返す
         } catch (\Exception $e) {
             return ['message' => 'Error fetching paginated records', 'error' => $e->getMessage()];
         }
     }
 
-
-
     /**
      * 文字列検索
      *
-     * @param string $keyword 検索キーワード
-     * @param mixed $columns 検索対象カラム（カンマ区切り文字列または配列）
+     * @param  string  $keyword  検索キーワード
+     * @param  mixed  $columns  検索対象カラム（カンマ区切り文字列または配列）
      * @return array 検索結果と次のカーソル
      */
     public function search(string $keyword, $columns = ['*'])
@@ -218,7 +224,7 @@ trait CrudTrait
         // columnsが文字列の場合はカンマ区切りで配列に変換
         if (is_string($columns)) {
             $columns = explode(',', $columns);
-        } elseif (!is_array($columns)) {
+        } elseif (! is_array($columns)) {
             $columns = ['*']; // デフォルトは全カラム
         }
 
@@ -228,7 +234,7 @@ trait CrudTrait
         try {
             $query = $this->getModel()::where(function ($query) use ($keyword, $columns) {
                 foreach ($columns as $column) {
-                    $query->orWhere($column, 'like', '%' . $keyword . '%');
+                    $query->orWhere($column, 'like', '%'.$keyword.'%');
                 }
             });
 
