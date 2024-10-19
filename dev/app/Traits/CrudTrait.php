@@ -61,7 +61,7 @@ trait CrudTrait
     /**
      * 新規作成
      */
-    protected function store(Request $request)
+    public function store(Request $request)
     {
         try {
             $model = $this->getModel();
@@ -93,7 +93,7 @@ trait CrudTrait
     /**
      * 更新
      */
-    protected function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $model = $this->getModel();
@@ -101,6 +101,7 @@ trait CrudTrait
 
             // ロック状態の確認
             if ($this->isLocked($record)) {
+                \Log::info('Record is locked', ['record_id' => $id]);
                 return ['message' => 'Resource is locked by another user.'];
             }
 
